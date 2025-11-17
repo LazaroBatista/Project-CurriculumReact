@@ -1,33 +1,60 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+// app/(tabs)/_layout.tsx
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Tabs } from "expo-router";
+import { Feather } from "@expo/vector-icons";
+import { useColorScheme } from "react-native";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: "#1C4ED8",
+        tabBarInactiveTintColor: "#8E8E8E",
+        tabBarStyle: {
+          backgroundColor: "#F2F7FF",
+          borderTopWidth: 0,
+          height: 60,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Inicio",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="home" color={color} size={size} />
+          ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="projetos"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Projetos",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="code" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="experiencia"
+        options={{
+          title: "Experiência",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="briefcase" color={color} size={size} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="habilidades"
+        options={{
+          title: "Habilidades",
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="star" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
