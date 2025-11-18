@@ -1,39 +1,47 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
-import { Colors } from '@/constants/theme';
+// app/project/[id].tsx
 
-const data = {
-  1: { title: 'Starbucks', img: require('../assets/images/Foto-Projeto-starbucks.png'), desc: 'Página Starbucks responsiva.' },
-  2: { title: 'WeCare', img: require('../assets/images/Foto-Projeto-WeCare.png'), desc: 'Projeto WeCare moderno.' },
-  3: { title: 'EasyShopping', img: require('../assets/images/Foto-Projeto-EasyShopping.png'), desc: 'Landing page EasyShopping.' },
-  4: { title: 'Conversor', img: require('../assets/images/Foto-Projeto-conversor-moedas.png'), desc: 'Conversor de moedas.' },
-  5: { title: 'Sorteador', img: require('../assets/images/Foto-Projeto-sorteio_random.png'), desc: 'Gerador de números.' },
-  6: { title: 'TechStore', img: require('../assets/images/Foto-Projeto-TechStore.png'), desc: 'Loja virtual TechStore.' },
-};
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { WebView } from "react-native-webview";
+import { useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 
-export default function Projeto() {
-  const { id } = useLocalSearchParams();
+export default function ProjectView() {
+  const { id, url } = useLocalSearchParams();
 
-// converte em número com segurança
-const parsedId = Array.isArray(id) ? Number(id[0]) : Number(id);
-
-const projeto = data[parsedId as 1 | 2 | 3 | 4 | 5 | 6];
-
+  const realUrl = Array.isArray(url) ? url[0] : url;
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>{projeto.title}</Text>
+    <View style={{ flex: 1 }}>
+      {/* Top Bar */}
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.back()}>
+          <Ionicons name="arrow-back" size={26} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Projeto {id}</Text>
+      </View>
 
-      <Image source={projeto.img} style={styles.img} />
-
-      <Text style={styles.desc}>{projeto.desc}</Text>
-    </ScrollView>
+      {/* WebView */}
+      <WebView 
+        source={{ uri: realUrl }} 
+        style={{ flex: 1 }}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.light.background, padding: 20 },
-  title: { color: '#00eaff', fontSize: 26, fontWeight: 'bold' },
-  img: { width: '100%', height: 250, borderRadius: 10, marginVertical: 20 },
-  desc: { color: '#fff', fontSize: 16, lineHeight: 22 },
+  header: {
+    height: 55,
+    backgroundColor: "#1A73E8",
+    paddingHorizontal: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 15,
+  },
+  headerText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "600",
+  }
 });

@@ -22,8 +22,7 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "static"
     },
     "plugins": [
       "expo-router",
@@ -43,6 +42,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "de4f87c2-94e8-46ed-b2a4-ee8ea79dbb96"
+      }
+    },
+    "owner": "sushibr",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/de4f87c2-94e8-46ed-b2a4-ee8ea79dbb96"
     }
   }
 }

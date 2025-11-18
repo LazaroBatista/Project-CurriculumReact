@@ -36,9 +36,9 @@ export default function ExperienciasScreen() {
         <View style={styles.divider} />
 
         {/* Experiência 4 */}
-        <Text style={styles.period}>{`{ Junho 2025 - Atual`}</Text>
+        <Text style={styles.period}>{` Junho 2025 - Atual`}</Text>
         <Text style={styles.title}>Atendente de CallCenter.</Text>
-        <Text style={styles.company}>AEC Centro de Contato S.A.}</Text>
+        <Text style={styles.company}>AEC Centro de Contato S.A.</Text>
       </View>
     </ScrollView>
   );
